@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151613">
+  <meta name="description" content="Orbit a Lamborghini Huracán STO in a real-time garage and inspect six assemblies in interactive exploded views.">
+  <title>Huracán STO · Assembly Studio</title>
+  <link rel="icon" href="mark.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/huracan-sto.glb" as="fetch" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="showroom.mjs"></script>
+</head>
+<body>
+  <a href="#assemblies" class="skip">Skip to assemblies</a>
+  <header class="site-head">
+    <div class="wrap head-inner">
+      <a class="logo" href="./"><img src="mark.svg" width="38" height="38" alt=""><span>Assembly Studio</span></a>
+      <nav aria-label="Showroom utilities">
+        <a class="plain-link" href="guide.html">Technical guide <span aria-hidden="true">↗</span></a>
+        <button class="button button-small" type="button" data-help-open hidden>Controls</button>
+        <button class="button button-small hand-toggle" type="button" data-hand-open aria-expanded="false" aria-controls="hand-panel" hidden>Hand controls</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap studio">
+    <header class="exhibit-head">
+      <div class="vehicle-title">
+        <p>Lamborghini</p>
+        <h1 id="vehicle-title">Huracán STO</h1>
+      </div>
+      <dl class="specs" aria-label="Huracán STO performance">
+        <div><dt>Engine</dt><dd>5.2 <small>L V10</small></dd></div>
+        <div><dt>Power</dt><dd>640 <small>CV</small></dd></div>
+        <div><dt>0–100 km/h</dt><dd>3.0 <small>s</small></dd></div>
+      </dl>
+    </header>
+    <section class="showcase" aria-labelledby="vehicle-title">
+      <div class="main-view" data-main tabindex="0" role="group" aria-label="Orbit the Huracán STO" aria-describedby="orbit-hint">
+        <img class="preview" src="assets/sto-garage.webp" alt="Low front view of a blue and orange Lamborghini Huracán STO in a steel-walled garage." width="649" height="495" fetchpriority="high">
+        <div class="hotspots" data-hotspots hidden></div>
+      </div>
+      <div class="figure-controls">
+        <div class="view-caption">
+          <p class="view-mode" data-mode-title role="status"><span class="mode-dot" aria-hidden="true"></span> Garage view</p>
+          <p id="orbit-hint" data-orbit-hint>Component explanations are available in the technical guide.</p>
+        </div>
+        <div class="camera-actions" data-main-controls hidden aria-label="Garage camera controls" role="group">
+          <button class="button button-icon" type="button" data-main-zoom="out" aria-label="Zoom out">−</button>
+          <button class="button button-small" type="button" data-main-reset>Reset view</button>
+          <button class="button button-icon" type="button" data-main-zoom="in" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side" id="assemblies" tabindex="-1" aria-labelledby="library-title">
+      <header class="side-head">
+        <h2 id="library-title">Assembly index</h2>
+        <p>Select an assembly to see how its parts fit together.</p>
+      </header>
+      <button class="button inspect" type="button" data-inspect aria-pressed="false" hidden><span data-inspect-label>Inspect the car</span><span aria-hidden="true">→</span></button>
+      <nav aria-label="Vehicle assemblies">
+        <ol class="assembly-list" role="list">
+          <li><a href="guide.html#front" data-assembly="front"><span class="assembly-number" aria-hidden="true">1</span><span><strong>Front bodywork</strong><small>Cofango</small></span><span class="assembly-arrow" aria-hidden="true">→</span></a></li>
+          <li><a href="guide.html#engine" data-assembly="engine"><span class="assembly-number" aria-hidden="true">2</span><span><strong>V10 powertrain</strong><small>Engine &amp; transmission</small></span><span class="assembly-arrow" aria-hidden="true">→</span></a></li>
+          <li><a href="guide.html#wheel" data-assembly="wheel"><span class="assembly-number" aria-hidden="true">3</span><span><strong>Wheel &amp; brakes</strong><small>CCM-R assembly</small></span><span class="assembly-arrow" aria-hidden="true">→</span></a></li>
+          <li><a href="guide.html#aero" data-assembly="aero"><span class="assembly-number" aria-hidden="true">4</span><span><strong>Rear aero</strong><small>Wing &amp; diffuser</small></span><span class="assembly-arrow" aria-hidden="true">→</span></a></li>
+          <li><a href="guide.html#cockpit" data-assembly="cockpit"><span class="assembly-number" aria-hidden="true">5</span><span><strong>Cockpit</strong><small>Driver controls</small></span><span class="assembly-arrow" aria-hidden="true">→</span></a></li>
+          <li><a href="guide.html#suspension" data-assembly="suspension"><span class="assembly-number" aria-hidden="true">6</span><span><strong>Suspension</strong><small>Spring, damper &amp; links</small></span><span class="assembly-arrow" aria-hidden="true">→</span></a></li>
+        </ol>
+      </nav>
+      <p class="fallback" data-fallback hidden>The interactive model couldn’t load. The technical guide contains all six assemblies.</p>
+      <noscript><p class="fallback">Open any assembly in the technical guide for its component explanations.</p></noscript>
+    </aside>
+  </main>
+
+  <footer class="wrap footer">
+    <p>Independent 3D study by Dhruvil Gohil · <a href="guide.html#credits">Model credits</a></p>
+    <a href="https://www.lamborghini.com/en-en/models/huracan/huracan-sto">Lamborghini specifications ↗</a>
+  </footer>
+
+  <dialog class="part-dialog" data-part-dialog aria-labelledby="assembly-title" aria-describedby="assembly-description">
+    <header class="dialog-head">
+      <div><p class="kicker" data-assembly-label></p><h2 id="assembly-title" data-assembly-title></h2></div>
+      <form method="dialog"><button class="button button-small" type="submit" autofocus aria-label="Close assembly">Close <span aria-hidden="true">×</span></button></form>
+    </header>
+    <div class="dialog-layout">
+      <div class="model-column">
+        <div class="model-view" data-model tabindex="0" role="group" aria-label="Rotate the exploded assembly" aria-describedby="model-hint">
+          <div class="part-pins" data-pins></div>
+          <p class="model-loading" data-model-loading role="status" hidden>Loading the detailed brake assembly…</p>
+        </div>
+        <div class="explosion-controls">
+          <label class="range" for="explode">Separation <output for="explode" data-spread-output>0%</output></label>
+          <input id="explode" type="range" min="0" max="100" value="0">
+          <div class="assembly-controls">
+            <div class="camera-actions" aria-label="Part camera controls" role="group">
+              <button class="button button-icon" type="button" data-part-zoom="out" aria-label="Zoom part out">−</button>
+              <button class="button button-small" type="button" data-part-reset>Reset view</button>
+              <button class="button button-icon" type="button" data-part-zoom="in" aria-label="Zoom part in">+</button>
+            </div>
+            <button class="button button-primary button-small" type="button" data-spread-toggle>Assemble</button>
+          </div>
+          <p id="model-hint" class="model-hint">Drag to rotate. Select a numbered component to see how it works.</p>
+        </div>
+      </div>
+      <div class="component-column">
+        <p id="assembly-description"></p>
+        <h3>Components</h3>
+        <div class="component-list" data-component-list></div>
+        <div class="component-detail" data-component-detail>
+          <h4 data-component-name></h4>
+          <p data-component-text></p>
+          <button class="button button-small component-focus" type="button" data-component-focus aria-pressed="false">Focus component</button>
+        </div>
+        <p class="sr-only" role="status" data-part-status></p>
+        <a class="plain-link" data-source>Manufacturer reference ↗</a>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="help-dialog" data-help aria-labelledby="help-title">
+    <header class="dialog-head">
+      <h2 id="help-title">Showroom controls</h2>
+      <form method="dialog"><button class="button button-small" type="submit" autofocus aria-label="Close controls">Close <span aria-hidden="true">×</span></button></form>
+    </header>
+    <div class="help-content">
+      <dl>
+        <div><dt>Move around the car</dt><dd>Drag with the mouse or one finger. With the viewer focused, use the arrow keys.</dd></div>
+        <div><dt>Zoom and reset</dt><dd>Scroll, pinch with two fingers, or use + and −. Press Home or Reset view to restore the starting angle.</dd></div>
+        <div><dt>Open a part</dt><dd>Select the car to reveal its assembly markers, then select a marker. You can also use the assembly list.</dd></div>
+        <div><dt>Disassemble</dt><dd>Use the Separation slider to move the components apart. Select a numbered marker or entry for its description. Press Escape to close.</dd></div>
+      </dl>
+    </div>
+  </dialog>
+  <aside class="hand-dock" data-hand-dock id="hand-panel" aria-labelledby="hand-title" hidden>
+    <header class="hand-header">
+      <h2 id="hand-title">Hand controls</h2>
+      <div class="hand-actions">
+        <button class="button button-small" data-hand-compact type="button" aria-expanded="true" hidden>Minimize</button>
+        <button class="button button-icon" data-hand-close type="button" aria-label="Close hand controls">×</button>
+      </div>
+    </header>
+    <figure class="hand-preview" data-hand-preview hidden>
+      <video data-hand-video playsinline muted aria-label="Mirrored front camera preview"></video>
+      <canvas data-hand-skeleton width="240" height="180" aria-hidden="true"></canvas>
+      <figcaption>Camera on</figcaption>
+    </figure>
+    <p class="hand-status" data-hand-status data-state="off" role="status">Enable the front camera to start.</p>
+    <dl class="hand-key">
+      <div><dt>Point</dt><dd>Move the on-screen cursor.</dd></div>
+      <div><dt>Pinch once</dt><dd>Select a part or button.</dd></div>
+      <div><dt>Pinch and move</dt><dd>Orbit over the 3D view or scroll over a panel.</dd></div>
+      <div><dt>Pinch with both hands</dt><dd>Spread to zoom in, bring together to zoom out. Move both together to pan.</dd></div>
+    </dl>
+    <p class="hand-privacy">Your camera feed is processed in this browser.</p>
+    <button class="button button-primary" type="button" data-hand-start>Enable front camera</button>
+    <button class="button" type="button" data-hand-stop hidden>Stop camera</button>
+  </aside>
+  <div data-hand-cursor class="hand-cursor" aria-hidden="true" hidden><span></span></div>
+</body>
+</html>
